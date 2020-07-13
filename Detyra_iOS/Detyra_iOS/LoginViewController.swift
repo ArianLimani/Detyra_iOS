@@ -37,6 +37,14 @@ class LoginViewController: UIViewController {
         print("Databaza dhe tabela u krijuan me sukses!");
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.destination is MainPageViewController) {
+            let vc = segue.destination as? MainPageViewController;
+            vc?.username = usernameTF?.text;
+        }
+    }
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -45,7 +53,6 @@ class LoginViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
     
     @IBAction func loginOnClick(_ sender: Any) {
         let username = usernameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines);
