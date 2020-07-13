@@ -38,6 +38,10 @@ class SignupViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
 //    @IBAction func registerButtonTapped(_ sender: AnyObject) {
     
     

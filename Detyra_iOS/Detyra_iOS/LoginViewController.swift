@@ -42,6 +42,10 @@ class LoginViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
+    }
+    
     
     @IBAction func loginOnClick(_ sender: Any) {
         let username = usernameTF.text?.trimmingCharacters(in: .whitespacesAndNewlines);
@@ -68,8 +72,9 @@ class LoginViewController: UIViewController {
             print("failure binding email: \(errmsg)");
             return;
         }
-        while(sqlite3_step(stmt) == SQLITE_ROW) {
+        if(sqlite3_step(stmt) == SQLITE_ROW) {
             print("Successful login");
+            self.performSegue(withIdentifier: "FromLoginToMain", sender: self)
         }
     }
     
