@@ -10,13 +10,16 @@ import UIKit
 
 class MainPageViewController: UIViewController {
     
-    var username:String?
-
+    var username:String?;
+    @IBOutlet weak var welcomLbl: UILabel!;
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        self.navigationItem.setHidesBackButton(true, animated: true);
+        welcomLbl.text = "Welcome, \(username!)!";
         
-        print(username as Any);
+        print(username!);
     }
 
     override func didReceiveMemoryWarning() {

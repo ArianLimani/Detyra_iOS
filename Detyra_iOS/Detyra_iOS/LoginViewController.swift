@@ -29,7 +29,7 @@ class LoginViewController: UIViewController {
             return;
         }
         
-        // Creating a table
+        //Creating a table
         if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS Users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, email TEXT, password TEXT)", nil, nil, nil) != SQLITE_OK {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error in creating table: \(errmsg)")
@@ -38,9 +38,9 @@ class LoginViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if (segue.destination is MainPageViewController) {
-            let vc = segue.destination as? MainPageViewController;
-            vc?.username = usernameTF?.text;
+        if (segue.destination is NavigationViewController) {
+            let vc = segue.destination as? NavigationViewController;
+            vc?.usernameNV = usernameTF?.text;
         }
     }
 
