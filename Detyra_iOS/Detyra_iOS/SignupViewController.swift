@@ -10,22 +10,24 @@ import UIKit
 import SQLite3
 
 class SignupViewController: UIViewController {
-   
+    
     @IBOutlet weak var usernameTextField: UITextField!;
     @IBOutlet weak var emailTextField: UITextField!;
     @IBOutlet weak var passwordTextField: UITextField!;
     @IBOutlet weak var repeatPasswordTextField: UITextField!;
     
+    @IBOutlet weak var errorLbl: UILabel!
+    
+    
     var db: OpaquePointer?
+    var validation = Validation()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         
-        // SQLite creation
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AEFvisionDatabase.sqlite");
         
-        // Checking and opening the database
         if sqlite3_open(fileURL.path, &db) != SQLITE_OK {
             print("error in opening the database");
             return;
@@ -35,14 +37,11 @@ class SignupViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning();
-        // Dispose of any resources that can be recreated.
     }
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
-//    @IBAction func registerButtonTapped(_ sender: AnyObject) {
     
     
     @IBAction func singupOnClick(_ sender: Any) {
@@ -52,103 +51,103 @@ class SignupViewController: UIViewController {
         let userPassword = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines);
         let userRepeatPassword = repeatPasswordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines);
         
-        // Check for empty fields
         if (username!.isEmpty || userEmail!.isEmpty
             || userPassword!.isEmpty || userRepeatPassword!.isEmpty) {
-            // Display an alert message
-            displayMyAlertMessage(userMessage: "All fields are required!");
+            errorLbl.text = "All fields are required!"
             return;
         }
         
-        //Check if passwords match
+        let isValidateUsername = self.validation.validateName(name: username!)
+        if (isValidateUsername == false) {
+            errorLbl.text="Invalid username, 3-18 characters required"
+            return
+        }
+        let isValidateEmail = self.validation.validateEmailId(emailID: userEmail!)
+        if (isValidateEmail == false){
+            errorLbl.text="Invalid email, @student.uni-pr.edu needed"
+            return
+        }
+        let isValidatePass = self.validation.validatePassword(password: userPassword!)
+        if (isValidatePass == false) {
+            errorLbl.text="Password too weak"
+            return
+        }
+        
         if(userPassword != userRepeatPassword) {
-            // Display an alert message
-            displayMyAlertMessage(userMessage: "Passwords don't match!");
+            errorLbl.text="Passwords don't match"
+            
             return;
         }
         
-        // Store data in NSUserDefaults
-        //        UserDefaults.standard.set(username, forKey:"username");
-        //        UserDefaults.standard.set(userEmail, forKey:"userEmail");
-        //        UserDefaults.standard.set(userPassword, forKey:"userPassword");
-        
-        //creating a statement
-        var stmt: OpaquePointer?;
-        
-        //the insert query
-        let queryString = "INSERT INTO Users (username, email, password) VALUES (?,?,?)";
-        
-        //preparing the query
-        if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!);
-            print("error preparing insert: \(errmsg)");
-            return;
+        if (isValidateUsername == true || isValidateEmail == true || isValidatePass == true) {
+            let queryString1 = "SELECT * FROM Users WHERE username = ? OR email = ?"
+            var stmt1:OpaquePointer?;
+            
+            if sqlite3_prepare(db, queryString1, -1, &stmt1, nil) != SQLITE_OK{
+                let errmsg = String(cString: sqlite3_errmsg(db)!);
+                print("error preparing insert: \(errmsg)");
+                return;
+            }
+            
+            if sqlite3_bind_text(stmt1, 1, username, -1, nil) != SQLITE_OK{
+                let errmsg = String(cString: sqlite3_errmsg(db)!);
+                print("failure binding username: \(errmsg)");
+                return;
+            }
+            
+            if sqlite3_bind_text(stmt1, 2, userEmail, -1, nil) != SQLITE_OK{
+                let errmsg = String(cString: sqlite3_errmsg(db)!);
+                print("failure binding email: \(errmsg)");
+                return;
+            }
+            
+            if(sqlite3_step(stmt1) == SQLITE_ROW) {
+                errorLbl.text = "This user already exists"
+                sqlite3_finalize(stmt1)
+                return
+            } else {
+                var stmt: OpaquePointer?;
+                
+                let queryString = "INSERT INTO Users (username, email, password) VALUES (?,?,?)";
+                
+                if sqlite3_prepare(db, queryString, -1, &stmt, nil) != SQLITE_OK{
+                    let errmsg = String(cString: sqlite3_errmsg(db)!);
+                    print("error preparing insert: \(errmsg)");
+                    return;
+                }
+                
+                if sqlite3_bind_text(stmt, 1, username, -1, nil) != SQLITE_OK{
+                    let errmsg = String(cString: sqlite3_errmsg(db)!);
+                    print("failure binding username: \(errmsg)");
+                    return;
+                }
+                
+                if sqlite3_bind_text(stmt, 2, userEmail, -1, nil) != SQLITE_OK{
+                    let errmsg = String(cString: sqlite3_errmsg(db)!);
+                    print("failure binding email: \(errmsg)");
+                    return;
+                }
+                
+                if sqlite3_bind_text(stmt, 3, userPassword, -1, nil) != SQLITE_OK{
+                    let errmsg = String(cString: sqlite3_errmsg(db)!);
+                    print("failure binding password: \(errmsg)");
+                    return;
+                }
+                
+                if sqlite3_step(stmt) != SQLITE_DONE {
+                    let errmsg = String(cString: sqlite3_errmsg(db)!);
+                    print("failure inserting into database: \(errmsg)");
+                    return;
+                }
+                
+                let myAlert = UIAlertController(title:"Signed Up", message: "Successfully registered!",preferredStyle: UIAlertControllerStyle.alert);
+                let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.default) {
+                    action in self.dismiss(animated: true,completion:nil);
+                }
+                myAlert.addAction(okAction);
+                self.present(myAlert, animated: true, completion: nil);
+                
+            }
         }
-        
-        //binding the parameters
-        if sqlite3_bind_text(stmt, 1, username, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!);
-            print("failure binding username: \(errmsg)");
-            return;
-        }
-        
-        if sqlite3_bind_text(stmt, 2, userEmail, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!);
-            print("failure binding email: \(errmsg)");
-            return;
-        }
-        
-        if sqlite3_bind_text(stmt, 3, userPassword, -1, nil) != SQLITE_OK{
-            let errmsg = String(cString: sqlite3_errmsg(db)!);
-            print("failure binding password: \(errmsg)");
-            return;
-        }
-        
-        //executing the query to insert values
-        if sqlite3_step(stmt) != SQLITE_DONE {
-            let errmsg = String(cString: sqlite3_errmsg(db)!);
-            print("failure inserting into database: \(errmsg)");
-            return;
-        }
-        
-        //displaying a success message
-        print("User successfully registered");
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        // Display alert message with confirmation
-        let myAlert = UIAlertController(title:"Alert", message: "Successfully registered!",preferredStyle: UIAlertControllerStyle.alert);
-        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.default) {
-            action in self.dismiss(animated: true,completion:nil);
-        }
-        myAlert.addAction(okAction);
-        self.present(myAlert, animated: true, completion: nil);
-        
     }
-    
-    func displayMyAlertMessage(userMessage:String) {
-        let myAlert = UIAlertController(title:"Alert", message: userMessage, preferredStyle: UIAlertControllerStyle.alert);
-        let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.default, handler: nil);
-        myAlert.addAction(okAction);
-        self.present(myAlert, animated:true, completion:nil);
-        
-    }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-
 }

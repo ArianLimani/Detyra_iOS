@@ -10,6 +10,7 @@
 		270524FE24BE69A200674F57 /* MyReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270524FD24BE69A200674F57 /* MyReportsViewController.swift */; };
 		2705250024BE6A9C00674F57 /* CustomCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270524FF24BE6A9B00674F57 /* CustomCellTableViewCell.swift */; };
 		2705250224BF019600674F57 /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2705250124BF019600674F57 /* Reports.swift */; };
+		272FBC1624BF7B900007B778 /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272FBC1524BF7B900007B778 /* Validation.swift */; };
 		2743292024BCA260001A6603 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743291F24BCA260001A6603 /* NavigationViewController.swift */; };
 		2743292224BCE330001A6603 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743292124BCE330001A6603 /* MainPageViewController.swift */; };
 		9389DA5524B9157700C32797 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389DA5424B9157700C32797 /* AppDelegate.swift */; };
@@ -24,6 +25,7 @@
 		270524FD24BE69A200674F57 /* MyReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReportsViewController.swift; sourceTree = "<group>"; };
 		270524FF24BE6A9B00674F57 /* CustomCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellTableViewCell.swift; sourceTree = "<group>"; };
 		2705250124BF019600674F57 /* Reports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reports.swift; sourceTree = "<group>"; };
+		272FBC1524BF7B900007B778 /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Validation.swift; sourceTree = "<group>"; };
 		2743291F24BCA260001A6603 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		2743292124BCE330001A6603 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		9389DA5124B9157700C32797 /* Detyra_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Detyra_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -78,6 +80,7 @@
 				9389DA6024B9157700C32797 /* Info.plist */,
 				270524FF24BE6A9B00674F57 /* CustomCellTableViewCell.swift */,
 				2705250124BF019600674F57 /* Reports.swift */,
+				272FBC1524BF7B900007B778 /* Validation.swift */,
 			);
 			path = Detyra_iOS;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 				2743292224BCE330001A6603 /* MainPageViewController.swift in Sources */,
 				2743292024BCA260001A6603 /* NavigationViewController.swift in Sources */,
 				2705250024BE6A9C00674F57 /* CustomCellTableViewCell.swift in Sources */,
+				272FBC1624BF7B900007B778 /* Validation.swift in Sources */,
 				93D58ACA24BA9E6100F477AD /* SignupViewController.swift in Sources */,
 				9389DA5724B9157700C32797 /* LoginViewController.swift in Sources */,
 				9389DA5524B9157700C32797 /* AppDelegate.swift in Sources */,
