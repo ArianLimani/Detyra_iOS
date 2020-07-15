@@ -123,7 +123,6 @@ class SignupViewController: UIViewController {
         
         
         
-        
         // Display alert message with confirmation
         let myAlert = UIAlertController(title:"Alert", message: "Successfully registered!",preferredStyle: UIAlertControllerStyle.alert);
         let okAction = UIAlertAction(title:"OK", style:UIAlertActionStyle.default) {

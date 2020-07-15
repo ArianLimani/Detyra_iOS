@@ -34,6 +34,12 @@ class LoginViewController: UIViewController {
             let errmsg = String(cString: sqlite3_errmsg(db)!)
             print("error in creating table: \(errmsg)")
         }
+        
+        if sqlite3_exec(db, "CREATE TABLE IF NOT EXISTS Reports (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, report_for TEXT, description TEXT)", nil, nil, nil) != SQLITE_OK {
+            let errmsg = String(cString: sqlite3_errmsg(db)!)
+            print("error in creating table: \(errmsg)")
+        }
+        
         print("Databaza dhe tabela u krijuan me sukses!");
     }
     
@@ -81,8 +87,11 @@ class LoginViewController: UIViewController {
         }
         if(sqlite3_step(stmt) == SQLITE_ROW) {
             print("Successful login");
+            sqlite3_finalize(stmt)
+            sqlite3_close(db)
             self.performSegue(withIdentifier: "FromLoginToMain", sender: self)
         }
+
     }
     
     

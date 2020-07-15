@@ -7,10 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		270524FE24BE69A200674F57 /* MyReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270524FD24BE69A200674F57 /* MyReportsViewController.swift */; };
+		2705250024BE6A9C00674F57 /* CustomCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270524FF24BE6A9B00674F57 /* CustomCellTableViewCell.swift */; };
+		2705250224BF019600674F57 /* Reports.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2705250124BF019600674F57 /* Reports.swift */; };
 		2743292024BCA260001A6603 /* NavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743291F24BCA260001A6603 /* NavigationViewController.swift */; };
 		2743292224BCE330001A6603 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2743292124BCE330001A6603 /* MainPageViewController.swift */; };
-		933086D524BE39B900FE187C /* CustomRowTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933086D424BE39B900FE187C /* CustomRowTableViewCell.swift */; };
-		937C74C824BDE74700CD4527 /* MyReportsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 937C74C724BDE74700CD4527 /* MyReportsViewController.swift */; };
 		9389DA5524B9157700C32797 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389DA5424B9157700C32797 /* AppDelegate.swift */; };
 		9389DA5724B9157700C32797 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9389DA5624B9157700C32797 /* LoginViewController.swift */; };
 		9389DA5A24B9157700C32797 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9389DA5824B9157700C32797 /* Main.storyboard */; };
@@ -20,10 +21,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		270524FD24BE69A200674F57 /* MyReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReportsViewController.swift; sourceTree = "<group>"; };
+		270524FF24BE6A9B00674F57 /* CustomCellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCellTableViewCell.swift; sourceTree = "<group>"; };
+		2705250124BF019600674F57 /* Reports.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reports.swift; sourceTree = "<group>"; };
 		2743291F24BCA260001A6603 /* NavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationViewController.swift; sourceTree = "<group>"; };
 		2743292124BCE330001A6603 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
-		933086D424BE39B900FE187C /* CustomRowTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomRowTableViewCell.swift; sourceTree = "<group>"; };
-		937C74C724BDE74700CD4527 /* MyReportsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyReportsViewController.swift; sourceTree = "<group>"; };
 		9389DA5124B9157700C32797 /* Detyra_iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Detyra_iOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9389DA5424B9157700C32797 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9389DA5624B9157700C32797 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -69,12 +71,13 @@
 				93D58AC924BA9E6100F477AD /* SignupViewController.swift */,
 				2743292124BCE330001A6603 /* MainPageViewController.swift */,
 				2743291F24BCA260001A6603 /* NavigationViewController.swift */,
-				933086D424BE39B900FE187C /* CustomRowTableViewCell.swift */,
-				937C74C724BDE74700CD4527 /* MyReportsViewController.swift */,
+				270524FD24BE69A200674F57 /* MyReportsViewController.swift */,
 				9389DA5824B9157700C32797 /* Main.storyboard */,
 				9389DA5B24B9157700C32797 /* Assets.xcassets */,
 				9389DA5D24B9157700C32797 /* LaunchScreen.storyboard */,
 				9389DA6024B9157700C32797 /* Info.plist */,
+				270524FF24BE6A9B00674F57 /* CustomCellTableViewCell.swift */,
+				2705250124BF019600674F57 /* Reports.swift */,
 			);
 			path = Detyra_iOS;
 			sourceTree = "<group>";
@@ -151,13 +154,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				933086D524BE39B900FE187C /* CustomRowTableViewCell.swift in Sources */,
-				937C74C824BDE74700CD4527 /* MyReportsViewController.swift in Sources */,
+				270524FE24BE69A200674F57 /* MyReportsViewController.swift in Sources */,
 				2743292224BCE330001A6603 /* MainPageViewController.swift in Sources */,
 				2743292024BCA260001A6603 /* NavigationViewController.swift in Sources */,
+				2705250024BE6A9C00674F57 /* CustomCellTableViewCell.swift in Sources */,
 				93D58ACA24BA9E6100F477AD /* SignupViewController.swift in Sources */,
 				9389DA5724B9157700C32797 /* LoginViewController.swift in Sources */,
 				9389DA5524B9157700C32797 /* AppDelegate.swift in Sources */,
+				2705250224BF019600674F57 /* Reports.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
