@@ -36,7 +36,7 @@ class MainPageViewController: UIViewController {
         self.navigationItem.setHidesBackButton(true, animated: true);
         
         
-        welcomLbl.text = "Welcome, \(username!)";
+        welcomLbl.text = "Welcome, \(username!)!";
         
     }
     
@@ -92,8 +92,6 @@ class MainPageViewController: UIViewController {
             let errmsg = String(cString: sqlite3_errmsg(db)!);
             print("failure inserting into database: \(errmsg)");
             return;
-        } else {
-            print("success")
         }
         
         sqlite3_finalize(stmt)

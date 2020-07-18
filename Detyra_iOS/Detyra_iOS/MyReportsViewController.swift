@@ -51,7 +51,6 @@ class MyReportsViewController: UIViewController, UITableViewDelegate, UITableVie
 
             reportsList.append(Reports(username: String(describing: username1), report_for: String(describing: report_for1), description: String(describing: description1)))
         }
-        self.tableView.reloadData()
         
     }
     
@@ -60,7 +59,6 @@ class MyReportsViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         
         super.viewDidLoad()
-        print(usernameMY!)
         
         let fileURL = try! FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("AEFvisionDatabase.sqlite");
         

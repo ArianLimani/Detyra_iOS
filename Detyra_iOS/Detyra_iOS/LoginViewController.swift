@@ -39,7 +39,7 @@ class LoginViewController: UIViewController {
             print("error in creating table: \(errmsg)")
         }
         
-        print("Databaza dhe tabela u krijuan me sukses!");
+        //print("Databaza dhe tabela u krijuan me sukses!");
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -87,7 +87,6 @@ class LoginViewController: UIViewController {
             return;
         }
         if(sqlite3_step(stmt) == SQLITE_ROW) {
-            print("Successful login");
             sqlite3_finalize(stmt)
             sqlite3_close(db)
             self.performSegue(withIdentifier: "FromLoginToMain", sender: self)
